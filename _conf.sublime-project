@@ -1,0 +1,25 @@
+{
+	"folders":
+	[
+		{
+			// プロジェクトに含めるディレクトリ
+			"path": ".",
+			// 除外するディレクトリ
+			"folder_exclude_patterns": [
+				".sass-cache",
+				"css",
+				"img",
+				"__document"
+			],
+			// 除外するファイル
+			"file_exclude_patterns": [
+				"*jquery*",
+				".gitignore",
+				"*.sublime*",
+				"*.md",
+				"*.css.map",
+				"config.rb"
+			]
+		}
+	]
+}
