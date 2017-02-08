@@ -5,7 +5,7 @@
 		var $this = $(this);
 		var $target = $this.next();
 		var defaults = {
-			breakpoint: 768,
+			breakPoint: 768,
 			target: $target,
 			source: $this,
 			addSource: '',
@@ -25,7 +25,7 @@
 			clearTimeout(timer);
 			timer = setTimeout(function(){
 				w = $(window).width();
-				if(w < settings.breakpoint){
+				if(w < settings.breakPoint){
 					_spView(settings.addSource);
 					return;
 				}
