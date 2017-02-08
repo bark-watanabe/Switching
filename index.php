@@ -42,7 +42,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="jquery.switching.min.js"></script>
 <script>
-	$('#pc_header, #pc_footer').switching();
+	$('#pc_header,#pc_footer').switching();
 
 	$('#pc_main').switching({
 		'target': '#sp_main',
@@ -52,6 +52,7 @@
 	$('#pc_sub').switching({
 		'target': '#sp_sub',
 		'addSource': ['#pc_sub2','#pc_sub3'],
+		'breakPoint': 980,
 	});
 </script>
 </body>
