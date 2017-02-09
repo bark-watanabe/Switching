@@ -5,6 +5,7 @@
 		var $this = $(this);
 		var $target = $this.next();
 		var defaults = {
+			trigger: 'bp',
 			breakPoint: 768,
 			target: $target,
 			source: $this,
@@ -13,6 +14,7 @@
 		var settings = {};
 		var timer = false;
 		var w = 0;
+		var u = '';
 		// 実行処理
 		if(options !== undefined){
 			if('target' in options){
@@ -24,13 +26,11 @@
 		$(window).on('load resize', function() {
 			clearTimeout(timer);
 			timer = setTimeout(function(){
-				w = $(window).width();
-				if(w < settings.breakPoint){
-					_spView(settings.addSource);
+				if(settings.trigger == 'ua'){
+					_uaProcessing(settings);
 					return;
 				}
-				_pcView(settings.addSource);
-				return;
+				_bpProcessing(settings);
 			}, 300);
 		});
 		// 関数定義
@@ -66,6 +66,30 @@
 		}
 		function _isArray(obj){
 			return Object.prototype.toString.call(obj) === '[object Array]';
+		}
+		function _bpProcessing(obj){
+			w = $(window).width();
+			if(w < obj.breakPoint){
+				_spView(obj.addSource);
+				return;
+			}
+			_pcView(obj.addSource);
+			return;
+		}
+		function _uaProcessing(obj){
+			u = _isMobile(navigator.userAgent);
+			if(u === true){
+				_spView(obj.addSource);
+				return;
+			}
+			_pcView(obj.addSource);
+			return;
+		}
+		function _isMobile(str){
+			if (str.indexOf('iPhone') > 0 || str.indexOf('iPod') > 0 || str.indexOf('Android') > 0 && str.indexOf('Mobile') > 0) {
+				return true;
+			}
+			return false;
 		}
 	};
 })(jQuery);
