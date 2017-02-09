@@ -4,7 +4,6 @@
 		var $val = '';
 		var $this = $(this);
 		var $blkName = 'switchingJsBlk';
-console.log($this);
 		var $target = $this.next();
 		var defaults = {
 			method: 'src',
@@ -14,7 +13,6 @@ console.log($this);
 			target: $target,
 			source: $this,
 			addSource: '',
-			ajaxFlag: 0
 		}
 		var settings = {};
 		var timer = false;
@@ -57,12 +55,6 @@ console.log($this);
 				obj.source.hide();
 				_elmHide(obj.addSource);
 				obj.source.after('<div class="'+$blkName+'">'+data+'</div>');
-				// if(obj.ajaxFlag == 0){
-				// 	obj.source.hide();
-				// 	_elmHide(obj.addSource);
-				// 	obj.source.after(data);
-				// 	obj.ajaxFlag = 1;
-				// }
 			})
 			.fail(function(data){
 				console.log('error');
