@@ -3,6 +3,8 @@
 		// 変数定義
 		var $val = '';
 		var $this = $(this);
+		var $blkName = 'switchingJsBlk';
+console.log($this);
 		var $target = $this.next();
 		var defaults = {
 			method: 'src',
@@ -38,12 +40,12 @@
 		});
 		// 関数定義
 		function _spView(obj){
-			_elmHide(obj.addSource);
 			if(obj.method == 'ajax'){
 				_ajaxSpView(obj);
 				return;
 			}
 			obj.source.hide();
+			_elmHide(obj.addSource);
 			obj.target.show();
 		}
 		function _ajaxSpView(obj){
@@ -52,23 +54,31 @@
 				url: obj.url,
 			})
 			.done(function(data){
-				if(obj.ajaxFlag == 0){
-					obj.source.hide();
-					obj.source.after(data);
-					obj.ajaxFlag = 1;
-				}
+				obj.source.hide();
+				_elmHide(obj.addSource);
+				obj.source.after('<div class="'+$blkName+'">'+data+'</div>');
+				// if(obj.ajaxFlag == 0){
+				// 	obj.source.hide();
+				// 	_elmHide(obj.addSource);
+				// 	obj.source.after(data);
+				// 	obj.ajaxFlag = 1;
+				// }
 			})
 			.fail(function(data){
 				console.log('error');
-				console.log(data);
 			});
 		}
 		function _pcView(obj){
 			_elmShow(obj.addSource);
 			if(obj.method == 'ajax'){
+				_ajaxPcView(obj);
 				return;
 			}
 			obj.target.hide();
+			obj.source.show();
+		}
+		function _ajaxPcView(obj){
+			$('.'+$blkName).remove();
 			obj.source.show();
 		}
 		function _elmHide(elm){
